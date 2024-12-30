@@ -2,7 +2,12 @@
 
 void Port_Init(const Port_ConfigType *ConfigPtr)
 {
-
+    #if( STD_ON == PORT_DEV_ERROR_DETECT)
+        if( (NULL_PTR == ConfigPtr) || (NULL_PTR == ConfigPtr->Port_Container)){
+            Det_ReportError(PORT_MODULE_ID, PORT_INSTANCE_ID, PORT_INIT_SID, PORT_E_INIT_FAILED);
+            return;
+        }
+    #endif
     Port_ContainerType *container = ConfigPtr->Port_Container;
 
     for (uint16 i = 0; i < container->PortNumberOfPortPins; i++)
@@ -10,36 +15,42 @@ void Port_Init(const Port_ConfigType *ConfigPtr)
 
         Port_PinConfigType *pin_config = &container->Pin[i];
 
-        volatile uint32 *port_base_address = ((void *)0);
-        volatile uint32 *pcc_address = ((void *)0);          /* peripheral clock controller register address */
-        volatile uint32 *port_x_pcr_n_address = ((void *)0); /* holds the pin control register address, where x : [A-E] and n : [0-17] */
+        volatile uint32 *port_base_address = NULL_PTR;
+        volatile uint32 *pcc_address = NULL_PTR;          /* peripheral clock controller register address */
+        volatile uint32 *port_x_pcr_n_address = NULL_PTR; /* holds the pin control register address, where x : [A-E] and n : [0-17] */
+        volatile uint32 *gpio_pddr_address = NULL_PTR; /* holds port data direction register */
 
         switch (pin_config->PortID)
         {
         case PORT_A_ID:
             port_base_address = (volatile uint32 *)PORT_A_BASE_ADDRESS;
             pcc_address = (volatile uint32 *)PCC_PORT_A;
-            port_x_pcr_n_address = (volatile uint32 *)(PORT_A_BASE_ADDRESS + (4 * pin_config->PortPinId));
+            port_x_pcr_n_address = (volatile uint32 *)((uint32)port_base_address + (4 * pin_config->PortPinId));
+            gpio_pddr_address = (volatile uint32 *)GPIO_A_PDDR;
             break;
         case PORT_B_ID:
             port_base_address = (volatile uint32 *)PORT_B_BASE_ADDRESS;
             pcc_address = (volatile uint32 *)PCC_PORT_B;
-            port_x_pcr_n_address = (volatile uint32 *)(PORT_B_BASE_ADDRESS + (4 * pin_config->PortPinId));
+            port_x_pcr_n_address = (volatile uint32 *)((uint32)port_base_address + (4 * pin_config->PortPinId));
+            gpio_pddr_address = (volatile uint32 *)GPIO_B_PDDR;
             break;
         case PORT_C_ID:
             port_base_address = (volatile uint32 *)PORT_C_BASE_ADDRESS;
             pcc_address = (volatile uint32 *)PCC_PORT_C;
-            port_x_pcr_n_address = (volatile uint32 *)(PORT_C_BASE_ADDRESS + (4 * pin_config->PortPinId));
+            port_x_pcr_n_address = (volatile uint32 *)((uint32)port_base_address + (4 * pin_config->PortPinId));
+            gpio_pddr_address = (volatile uint32 *)GPIO_C_PDDR;
             break;
         case PORT_D_ID:
             port_base_address = (volatile uint32 *)PORT_D_BASE_ADDRESS;
             pcc_address = (volatile uint32 *)PCC_PORT_D;
-            port_x_pcr_n_address = (volatile uint32 *)(PORT_D_BASE_ADDRESS + (4 * pin_config->PortPinId));
+            port_x_pcr_n_address = (volatile uint32 *)((uint32)port_base_address + (4 * pin_config->PortPinId));
+            gpio_pddr_address = (volatile uint32 *)GPIO_D_PDDR;
             break;
         case PORT_E_ID:
             port_base_address = (volatile uint32 *)PORT_E_BASE_ADDRESS;
             pcc_address = (volatile uint32 *)PCC_PORT_E;
-            port_x_pcr_n_address = (volatile uint32 *)(PORT_E_BASE_ADDRESS + (4 * pin_config->PortPinId));
+            port_x_pcr_n_address = (volatile uint32 *)((uint32)port_base_address + (4 * pin_config->PortPinId));
+            gpio_pddr_address = (volatile uint32 *)GPIO_E_PDDR;
             break;
         default:
             // Do Nothing
@@ -130,6 +141,15 @@ void Port_Init(const Port_ConfigType *ConfigPtr)
             SET_BIT(*(volatile uint32 *)port_x_pcr_n_address, PCR_MUX_BIT_0);
             CLEAR_BIT(*(volatile uint32 *)port_x_pcr_n_address, PCR_MUX_BIT_1);
             CLEAR_BIT(*(volatile uint32 *)port_x_pcr_n_address, PCR_MUX_BIT_2);
+            if(PORT_PIN_IN == pin_config->PortPinDirection){
+                CLEAR_BIT(*(volatile uint32*)gpio_pddr_address, pin_config->PortPinId);
+            }
+            else if(PORT_PIN_OUT == pin_config->PortPinDirection){
+                SET_BIT(*(volatile uint32*)gpio_pddr_address, pin_config->PortPinId);
+            }
+            else{
+                /* No action required for invalid direction */
+            }
             break;
         case PORT_PIN_MODE_ALT_2:
             CLEAR_BIT(*(volatile uint32 *)port_x_pcr_n_address, PCR_MUX_BIT_0);

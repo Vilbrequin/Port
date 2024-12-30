@@ -4,6 +4,12 @@
 #include "Port_Types.h"
 #include "Port_Regs.h"
 #include "Common_Macros.h"
+#include "Compiler.h"
+
+
+#define PORT_DEV_ERROR_DETECT                       (STD_ON)
+#define PORT_MODULE_ID                              (124U)
+#define PORT_INSTANCE_ID                            (0U)
 
 /*********************************************************************************************************
  *                                 Definiton of development errors in module Port                        *

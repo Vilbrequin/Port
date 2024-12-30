@@ -6,7 +6,7 @@
 typedef uint8 Port_PinType; /* SWS_Port_00229 : Data type for the symbolic name of a port pin */
 typedef enum {
     PORT_PIN_IN     = 0x00,
-    PORT_PIN_IOUT   = 0x01
+    PORT_PIN_OUT   = 0x01
 }Port_PinDirectionType;
 
 

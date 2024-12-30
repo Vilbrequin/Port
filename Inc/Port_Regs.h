@@ -1,6 +1,6 @@
 #ifndef PORT_REGS_H_
 #define PORT_REGS_H_
-
+// Port instances base addresses
 #define PORT_A_BASE_ADDRESS             0x40049000         
 #define PORT_B_BASE_ADDRESS             0x4004A000
 #define PORT_C_BASE_ADDRESS             0x4004B000
@@ -87,6 +87,26 @@
 #define PORT_C_DFWR                     (PORT_C_BASE_ADDRESS + DFWR_OFFSET)
 #define PORT_D_DFWR                     (PORT_D_BASE_ADDRESS + DFWR_OFFSET)
 #define PORT_E_DFWR                     (PORT_E_BASE_ADDRESS + DFWR_OFFSET)
+
+// GPIO instances base address
+#define GPIO_A_BASE_ADDRESS             0x400FF000
+#define GPIO_B_BASE_ADDRESS             0x400FF040
+#define GPIO_C_BASE_ADDRESS             0x400FF080
+#define GPIO_D_BASE_ADDRESS             0x400FF0C0
+#define GPIO_E_BASE_ADDRESS             0x400FF100
+
+
+// Port Data Direction Register (PDDR)
+#define PDDR_OFFSET                     0x14
+
+#define GPIO_A_PDDR                     (GPIO_A_BASE_ADDRESS + PDDR_OFFSET)
+#define GPIO_B_PDDR                     (GPIO_B_BASE_ADDRESS + PDDR_OFFSET)
+#define GPIO_C_PDDR                     (GPIO_C_BASE_ADDRESS + PDDR_OFFSET)
+#define GPIO_D_PDDR                     (GPIO_D_BASE_ADDRESS + PDDR_OFFSET)
+#define GPIO_E_PDDR                     (GPIO_E_BASE_ADDRESS + PDDR_OFFSET)
+
+
+
 
 
 #define PCC_BASE_ADDRESS                0x40065000
