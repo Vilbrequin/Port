@@ -8,9 +8,18 @@
 
 
 #define PORT_DEV_ERROR_DETECT                       (STD_ON)
+#define PORT_SET_PIN_DIRECTION_API                  (STD_ON)
+#define PORT_SET_PIN_MODE_API                       (STD_ON)
+#define PORT_VERSION_INFO_API                       (STD_ON)
+
 #define PORT_MODULE_ID                              (124U)
 #define PORT_INSTANCE_ID                            (0U)
 
+
+#define PORT_NOT_INITIALIZED                        (0U)
+#define PORT_INITIALIZED                            (1U)
+
+#define PORT_NUMBER_OF_CONFIGURED_PINS              (88U)
 /*********************************************************************************************************
  *                                 Definiton of development errors in module Port                        *
  *********************************************************************************************************/
@@ -25,20 +34,15 @@
  * Error Condition: Port Pin not configured as changeable
  * Realted error value: PORT_E_DIRECTION_UNCHANGEABLE 
  * */
-#define PORT_E_DIRECTION_UNCHANGEABLE
+#define PORT_E_DIRECTION_UNCHANGEABLE               (uint8)0x0B
 
 
 /* Function: Port_Init
  * Error Condition: Port_Init service called with wrong parameter.
  * Realted error value: PORT_E_INIT_FAILED 
  * */
-#define PORT_E_INIT_FAILED                          (uint8)0x0B 
+#define PORT_E_INIT_FAILED                          (uint8)0x0C 
 
-/* Function: Port_SetPinMode
- * Error Condition: Incorrect Port Pin ID passed
- * Realted error value: PORT_E_PARAM_PIN 
- * */
-#define PORT_E_PARAM_PIN                            (uint8)0x0C
 
 /* Function: Port_SetPinMode
  * Error Condition: Port Pin Mode passed not valid

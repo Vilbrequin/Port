@@ -95,6 +95,14 @@
 #define GPIO_D_BASE_ADDRESS             0x400FF0C0
 #define GPIO_E_BASE_ADDRESS             0x400FF100
 
+// Port Data Output Register (PDOR)
+#define PDOR_OFFSET                     0x00
+
+#define GPIO_A_PDOR                     (GPIO_A_BASE_ADDRESS + PDOR_OFFSET)
+#define GPIO_B_PDOR                     (GPIO_B_BASE_ADDRESS + PDOR_OFFSET)
+#define GPIO_C_PDOR                     (GPIO_C_BASE_ADDRESS + PDOR_OFFSET)
+#define GPIO_D_PDOR                     (GPIO_D_BASE_ADDRESS + PDOR_OFFSET)
+#define GPIO_E_PDOR                     (GPIO_E_BASE_ADDRESS + PDOR_OFFSET)
 
 // Port Data Direction Register (PDDR)
 #define PDDR_OFFSET                     0x14
