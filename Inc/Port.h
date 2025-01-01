@@ -13,7 +13,13 @@
 #define PORT_VERSION_INFO_API                       (STD_ON)
 
 #define PORT_MODULE_ID                              (124U)
-#define PORT_INSTANCE_ID                            (0U)
+#define PORT_MODULE_INSTANCE_ID                     (0U)
+#define PORT_MODULE_VENDOR_ID                       (0xD0) /* My own vendor id (company dependent): highest vid is 0xC7(Real-Time Innovations)*/
+
+/* Module version 1.0.0 */
+#define PORT_MODULE_MAJOR_VERSION                   (1U)
+#define PORT_MODULE_MINOR_VERSION                   (0U)
+#define PORT_MODULE_PATCH_VERSION                   (0U)
 
 
 #define PORT_NOT_INITIALIZED                        (0U)
@@ -79,7 +85,7 @@
 
 #define PORT_GET_VERSION_INFO_SID                   (uint8)0x03
 
-#define PORT_SET_PiN_MODE                           (uint8)0x04
+#define PORT_SET_PIN_MODE_SID                       (uint8)0x04
 
 /*********************************************************************************************************
  *                                               Function Prototypes                                     *

@@ -119,7 +119,7 @@ typedef uint16 Port_PinType;
 #define PORT_E_PIN_15                   (Port_PinType)0x57
 #define PORT_E_PIN_16                   (Port_PinType)0x58
 
-#define PINS_PER_PORT                   (uint8)18                    
+#define PINS_PER_PORT                   (uint8)18U                    
 typedef enum {
     OFF,
     PULL_UP,
@@ -127,14 +127,16 @@ typedef enum {
 }Port_InternalResistor;
 
 typedef uint8 Port_PinModeType;
-#define PORT_PIN_MODE_ALT_0          (Port_PinModeType)0x00
-#define PORT_PIN_MODE_ALT_1          (Port_PinModeType)0x01
-#define PORT_PIN_MODE_ALT_2          (Port_PinModeType)0x02
-#define PORT_PIN_MODE_ALT_3          (Port_PinModeType)0x03
-#define PORT_PIN_MODE_ALT_4          (Port_PinModeType)0x04
-#define PORT_PIN_MODE_ALT_5          (Port_PinModeType)0x05
-#define PORT_PIN_MODE_ALT_6          (Port_PinModeType)0x06    
-#define PORT_PIN_MODE_ALT_7          (Port_PinModeType)0x07 
+#define PORT_PIN_MODE_ALT_0             (Port_PinModeType)0x00
+#define PORT_PIN_MODE_ALT_1             (Port_PinModeType)0x01
+#define PORT_PIN_MODE_ALT_2             (Port_PinModeType)0x02
+#define PORT_PIN_MODE_ALT_3             (Port_PinModeType)0x03
+#define PORT_PIN_MODE_ALT_4             (Port_PinModeType)0x04
+#define PORT_PIN_MODE_ALT_5             (Port_PinModeType)0x05
+#define PORT_PIN_MODE_ALT_6             (Port_PinModeType)0x06    
+#define PORT_PIN_MODE_ALT_7             (Port_PinModeType)0x07
+
+#define PORT_PIN_MODES                  (uint8)7U
 
 typedef uint8 Port_PinInterruptConfig;
 #define ISF_FLAG_DISABLED                           (Port_PinInterruptConfig)0x00 /* 0000 */
