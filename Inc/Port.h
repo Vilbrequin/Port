@@ -6,10 +6,28 @@
 #include "Common_Macros.h"
 #include "Compiler.h"
 
-
+/* 
+ * ECUC_Port_00123 : PortDevErrorDetect
+ * Index : 10.2.4
+ */
 #define PORT_DEV_ERROR_DETECT                       (STD_ON)
+
+/* 
+ * ECUC_Port_00131 : PortSetPinDirectionApi
+ * Index : 10.2.4
+ */
 #define PORT_SET_PIN_DIRECTION_API                  (STD_ON)
+
+/* 
+ * ECUC_Port_00132 : PortSetPinModeApi
+ * Index : 10.2.4
+ */
 #define PORT_SET_PIN_MODE_API                       (STD_ON)
+
+/* 
+ * ECUC_Port_00132 : PortVersionInfoApi
+ * Index : 10.2.4
+ */
 #define PORT_VERSION_INFO_API                       (STD_ON)
 
 #define PORT_MODULE_ID                              (124U)
@@ -27,7 +45,7 @@
 
 #define PORT_NUMBER_OF_CONFIGURED_PINS              (88U)
 /*********************************************************************************************************
- *                                 Definiton of development errors in module Port                        *
+ *                   [SWS_Port_00051] : Definiton of development errors in module Port                   *
  *********************************************************************************************************/
 
 /* Function: Port_SetPinDirection
@@ -93,6 +111,7 @@
 
 /*********************************************************************************************************
  * Service Name: Port_Init
+ * Sws_Index : 8.3.1 [SWS_Port_00140]
  * Service ID[hex]:0x00
  * Sync/Async: Synchronous
  * Reentrancy: reentrant
@@ -110,6 +129,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr);
 
 /*********************************************************************************************************
  * Service Name: Port_SetpinDirection
+ * Sws_Index : 8.3.2 [SWS_Port_00141]
  * Service ID[hex]:0x01
  * Sync/Async: Synchronous
  * Reentrancy: reentrant
@@ -123,6 +143,7 @@ void Port_SetPinDirection(Port_PinType Pin, Port_PinDirectionType Direction);
 
 /*********************************************************************************************************
  * Service Name: Port_RefreshPortDirection
+ * Sws_Index : 8.3.3 [SWS_Port_00142]
  * Service ID[hex]:0x02
  * Sync/Async: Synchronous
  * Reentrancy: Non reentrant
@@ -136,6 +157,7 @@ void Port_RefreshPortDirection(void);
 
 /*********************************************************************************************************
  * Service Name: Port_GetVersionInfo
+ * Sws_Index : 8.3.4 [SWS_Port_00143]
  * Service ID[hex]: 0x03
  * Sync/Async: Synchronous
  * Reentrancy: Non Reentrant
@@ -149,6 +171,7 @@ void Port_GetVersionInfo(Std_VersionInfoType* versioninfo);
 
 /*********************************************************************************************************
  * Service Name: Port_SetPinMode
+ * Sws_Index : 8.3.5 [SWS_Port_00144]
  * Service ID[hex]: 0x04
  * Sync/Async: Synchronous
  * Reentrancy: Reentrant

@@ -3,7 +3,10 @@
 
 #include "Std_Types.h"
 
-typedef uint8 Port_PinType; /* SWS_Port_00229 : Data type for the symbolic name of a port pin */
+/* 
+ * SWS_Port_00230 : Port_PinDirectionType
+ * Index : 8.2.3
+ */
 typedef enum {
     PORT_PIN_IN     = 0x00,
     PORT_PIN_OUT   = 0x01
@@ -17,7 +20,11 @@ typedef uint8 Port_PortID;
 #define PORT_D_ID                       (Port_PortID)0x03                 
 #define PORT_E_ID                       (Port_PortID)0x04
 
-typedef uint16 Port_PinType;
+/* 
+ * SWS_Port_00229 : Port_PinType
+ * Index : 8.2.2
+ */
+typedef uint8 Port_PinType; 
 
 /* Symbolic names for the individual port pins */
 /*********************** PORTA *************************/
@@ -120,11 +127,11 @@ typedef uint16 Port_PinType;
 #define PORT_E_PIN_16                   (Port_PinType)0x58
 
 #define PINS_PER_PORT                   (uint8)18U                    
-typedef enum {
-    OFF,
-    PULL_UP,
-    PULL_DOWN
-}Port_InternalResistor;
+
+/* 
+ * SWS_Port_00231 : Port_PinModeType
+ * Index : 8.2.4
+ */
 
 typedef uint8 Port_PinModeType;
 #define PORT_PIN_MODE_ALT_0             (Port_PinModeType)0x00
@@ -138,27 +145,18 @@ typedef uint8 Port_PinModeType;
 
 #define PORT_PIN_MODES                  (uint8)7U
 
-typedef uint8 Port_PinInterruptConfig;
-#define ISF_FLAG_DISABLED                           (Port_PinInterruptConfig)0x00 /* 0000 */
-#define ISF_FLAG_ENABLED_DMA_RISING_EDGE            (Port_PinInterruptConfig)0x01 /* 0001 */
-#define ISF_FLAG_ENABLED_DMA_FALLING_EDGE           (Port_PinInterruptConfig)0x02 /* 0010 */
-#define ISF_FLAG_ENABLED_DMA_EITHER_EDGE            (Port_PinInterruptConfig)0x03 /* 0011 */
-#define ISF_FLAG_ENABLED_INTERRUPT_LOGIC_0          (Port_PinInterruptConfig)0x08 /* 1000 */
-#define ISF_FLAG_ENABLED_INTERRUPT_RISING_EDGE      (Port_PinInterruptConfig)0x09 /* 1001 */
-#define ISF_FLAG_ENABLED_INTERRUPT_FALLING_EDGE     (Port_PinInterruptConfig)0x0A /* 1010 */
-#define ISF_FLAG_ENABLED_INTERRUPT_EITHER_EDGE      (Port_PinInterruptConfig)0x0B /* 1011 */
-#define ISF_FLAG_ENABLED_INTERRUPT_LOGIC_1          (Port_PinInterruptConfig)0x0C /* 1100 */
-
-
-
-
+/* 
+ * ECUC_Port_00129 : Port_PinLevelValueType
+ * Index : 10.2.5
+ */
 typedef uint8 Port_PinLevelValueType;
 #define PORT_PIN_LEVEL_LOW                          (Port_PinLevelValueType)0x00
 #define PORT_PIN_LEVEL_HIGH                         (Port_PinLevelValueType)0x01
 
-typedef uint8 Port_PinDriveStrengthType;
-#define PORT_PIN_LOW_DRIVE_STRENGTH                 (Port_PinDriveStrengthType)0x00
-#define PORT_PIN_HIGH_DRIVE_STRENGTH                (Port_PinDriveStrengthType)0x01
+/* 
+ * ECUC_Port_00124 : Port_PinConfigType
+ * Index : 10.2.3
+ */
 typedef struct {
     Port_PinType PortPinId;
     boolean PortPinDirectionChangeable;
@@ -170,15 +168,27 @@ typedef struct {
     /* PortPinEcucPartitionRef */
 }Port_PinConfigType;
 
+/* 
+ * ECUC_Port_00122 : Port_ContainerType
+ * Index : 10.2.3
+ */
 typedef struct {
     uint16 PortNumberOfPortPins;
     Port_PinConfigType *Pin;
 }Port_ContainerType;
 
+/* 
+ * SWS_Port_00228 : Port_ConfigType
+ * Index : 8.2.1
+ */
 typedef struct {
     Port_ContainerType* Port_Container;
 }Port_ConfigType;
 
+/* 
+ * ECUC_Port_00117 : Port_GeneralType
+ * Index : 10.2.4
+ */
 typedef struct {
     boolean PortDevErrorDetect;
     boolean PortSetPinDirectionApi;
@@ -187,6 +197,11 @@ typedef struct {
     /* PortEcucPartitionRef */
 }Port_GeneralType;
 
+
+/* 
+ * ECUC_Port_00135 : Port_Type
+ * Index : 10.2.2
+ */
 typedef struct{
     Port_ConfigType PortConfigSet;
     Port_GeneralType PortGeneral;

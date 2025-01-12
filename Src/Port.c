@@ -1,4 +1,5 @@
 #include "Port.h"
+#include "Det.h"
 
 static uint8 Port_Status = PORT_NOT_INITIALIZED;
 static Port_ContainerType *container = NULL_PTR;
